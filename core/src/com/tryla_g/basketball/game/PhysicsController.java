@@ -1,5 +1,6 @@
 package com.tryla_g.basketball.game;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -11,7 +12,7 @@ public class PhysicsController {
 	
 	private World world;
 	private Box2DDebugRenderer debugRenderer;
-	private float accumulator = 0;
+	private OrthographicCamera camera;
 	
 	public PhysicsController() {
 		init();
@@ -21,10 +22,9 @@ public class PhysicsController {
 		Box2D.init();
 		world = new World(new Vector2(0, -10), true);
 		debugRenderer = new Box2DDebugRenderer();
-	}
-	
-	private void doPhysicsStep(float deltaTime) {
-		
+		camera = new OrthographicCamera(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
+		camera.position.set(0, 0, 0);
+		camera.update();
 	}
 	
 	public void update(float deltaTime) {
@@ -32,7 +32,8 @@ public class PhysicsController {
 	}
 	
 	public void render() {
-		
+		debugRenderer.render(world, camera.combined);
+		world.step(1 / 45f, 6, 2);
 	}
 	
 }
