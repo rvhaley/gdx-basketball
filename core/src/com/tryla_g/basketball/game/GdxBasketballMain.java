@@ -9,7 +9,8 @@ public class GdxBasketballMain implements ApplicationListener {
 	private static final String TAG = GdxBasketballMain.class.getName();
 	
 	private WorldController worldController;
-	// World Renderer
+	private PhysicsController physicsController;
+	private WorldRenderer worldRenderer;
 	
 	private boolean paused;
 	
@@ -18,6 +19,9 @@ public class GdxBasketballMain implements ApplicationListener {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		
 		worldController = new WorldController();
+		physicsController = new PhysicsController();
+		worldRenderer = new WorldRenderer(worldController);
+		
 		paused = false;
 	}
 
