@@ -3,6 +3,7 @@ package com.tryla_g.basketball.game;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 
 public class GdxBasketballMain implements ApplicationListener {
@@ -18,6 +19,8 @@ public class GdxBasketballMain implements ApplicationListener {
 	@Override
 	public void create() {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		
+		Assets.INSTANCE.init(new AssetManager());
 		
 		worldController = new WorldController();
 		physicsController = new PhysicsController();
@@ -55,6 +58,7 @@ public class GdxBasketballMain implements ApplicationListener {
 	@Override
 	public void dispose() {
 		worldRenderer.dispose();
+		Assets.INSTANCE.dispose();
 	}
 
 }

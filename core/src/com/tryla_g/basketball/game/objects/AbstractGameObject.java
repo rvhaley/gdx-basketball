@@ -2,6 +2,7 @@ package com.tryla_g.basketball.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 
 public abstract class AbstractGameObject {
 
@@ -10,6 +11,8 @@ public abstract class AbstractGameObject {
 	public Vector2 origin;
 	public Vector2 scale;
 	public float rotation;
+	
+	public Body body;
 	
 	public AbstractGameObject() {
 		position = new Vector2();

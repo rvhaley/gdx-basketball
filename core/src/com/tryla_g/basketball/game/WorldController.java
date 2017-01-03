@@ -7,8 +7,6 @@ public class WorldController extends InputAdapter {
 
 	private static final String TAG = WorldController.class.getName();
 	
-	// Camera Helper
-	
 	public WorldController() {
 		init();
 	}
