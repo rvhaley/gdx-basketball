@@ -22,8 +22,8 @@ public class GdxBasketballMain implements ApplicationListener {
 		
 		Assets.INSTANCE.init(new AssetManager());
 		
-		worldController = new WorldController();
 		physicsController = new PhysicsController();
+		worldController = new WorldController(physicsController);
 		worldRenderer = new WorldRenderer(worldController);
 		
 		paused = false;
@@ -38,11 +38,13 @@ public class GdxBasketballMain implements ApplicationListener {
 	public void render() {
 		if (!paused) {
 			worldController.update(Gdx.graphics.getDeltaTime());
+			physicsController.update(Gdx.graphics.getDeltaTime());
 		}
 		
 		Gdx.gl.glClearColor(0x64/255.0f, 0x95/255.0f, 0xed/255.0f, 0xff/255.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render();
+		physicsController.render();
 	}
 
 	@Override

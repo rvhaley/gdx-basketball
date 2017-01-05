@@ -8,7 +8,7 @@ public class WorldRenderer implements Disposable {
 
 	private static final String TAG = WorldRenderer.class.getName();
 	
-	private OrthographicCamera camera;
+	public static OrthographicCamera camera;
 	private SpriteBatch batch;
 	private WorldController worldController;
 	
@@ -19,8 +19,7 @@ public class WorldRenderer implements Disposable {
 	
 	private void init() {
 		batch = new SpriteBatch();
-		camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
-		camera.position.set(0, 0, 0);
+		camera = new OrthographicCamera(800, 480);
 		camera.update();
 	}
 	
@@ -33,7 +32,8 @@ public class WorldRenderer implements Disposable {
 	}
 	
 	public void resize(int width, int height) {
-		
+		camera.viewportWidth = (Constants.VIEWPORT_HEIGHT / height) * width;
+		camera.update();
 	}
 	
 	@Override

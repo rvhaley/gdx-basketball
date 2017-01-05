@@ -7,16 +7,20 @@ public class WorldController extends InputAdapter {
 
 	private static final String TAG = WorldController.class.getName();
 	
-	public WorldController() {
-		init();
+	private GameWorld gameWorld;
+	
+	public WorldController(PhysicsController physicsController) {
+		init(physicsController);
 	}
 	
-	private void init() {
+	private void init(PhysicsController physicsController) {
 		Gdx.input.setInputProcessor(this);
+		
+		gameWorld = new GameWorld(physicsController.world);
 	}
 	
 	public void update(float deltaTime) {
-		
+		gameWorld.update(deltaTime);
 	}
 	
 }
