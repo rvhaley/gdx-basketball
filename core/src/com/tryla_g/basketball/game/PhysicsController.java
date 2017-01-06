@@ -9,7 +9,7 @@ public class PhysicsController {
 	
 	private static final String TAG = PhysicsController.class.getName();
 	
-	public World world;
+	public static World world;
 	
 	private float accumulator = 0;
 

@@ -9,6 +9,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.tryla_g.basketball.game.objects.Ball;
 import com.tryla_g.basketball.game.objects.Floor;
 
+import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
+
 public class GameWorld {
 
 	private static final String TAG = GameWorld.class.getName();
@@ -22,6 +24,8 @@ public class GameWorld {
 	
 	private void init(World world) {
 		ball = new Ball();
+		ball.dimension.set(40, 40);
+		ball.position.set(100, 300);
 		
 		ball.bodyDef.type = BodyType.DynamicBody;
 		ball.bodyDef.position.set(100, 300);
@@ -37,6 +41,8 @@ public class GameWorld {
 		fixtureDef.restitution = 0.6f;
 		
 		ball.fixture = ball.body.createFixture(fixtureDef);
+		
+		ball.body.setUserData(new Box2DSprite(ball.regionBall));
 		
 		circle.dispose();
 		

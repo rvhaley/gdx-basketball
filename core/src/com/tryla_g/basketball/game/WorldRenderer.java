@@ -20,11 +20,16 @@ public class WorldRenderer implements Disposable {
 	private void init() {
 		batch = new SpriteBatch();
 		camera = new OrthographicCamera(800, 480);
+		camera.position.set(0, 0, 0);
 		camera.update();
 	}
 	
 	public void render() {
 		renderWorld(batch);
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
+		worldController.gameWorld.render(batch);
+		batch.end();
 	}
 	
 	private void renderWorld(SpriteBatch batch) {
