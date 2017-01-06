@@ -32,11 +32,6 @@ public abstract class AbstractGameObject {
 	}
 	
 	public void update(float deltaTime) {
-//		position = body.getPosition();
-//		rotation = body.getAngle() * MathUtils.radiansToDegrees;
-//		System.out.println("getAngle():" + body.getAngle());
-//		System.out.println("Setting position to: " + body.getPosition().x + ", " + body.getPosition().y);
-//		body.setTransform(position, body.getAngle());
 		
 	}
 	

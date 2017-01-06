@@ -28,9 +28,6 @@ public class Ball extends AbstractGameObject {
 	@Override
 	public void render(SpriteBatch batch) {
 		Box2DSprite.draw(batch, PhysicsController.world);
-//		batch.draw(regionBall.getTexture(), position.x, position.y, origin.x, origin.y, dimension.x, dimension.y,
-//				scale.x, scale.y, rotation, regionBall.getRegionX(), regionBall.getRegionY(),
-//				regionBall.getRegionWidth(), regionBall.getRegionHeight(), false, false);
 		batch.setColor(1, 1, 1, 1);
 	}
 
