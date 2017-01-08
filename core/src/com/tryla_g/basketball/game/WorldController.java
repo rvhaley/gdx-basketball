@@ -64,10 +64,7 @@ public class WorldController extends InputAdapter {
 		Vector2 newTouch = new Vector2(vector.x, vector.y);
 		delta = newTouch.cpy().sub(lastTouch);
 		lastTouch = newTouch;
-		
 		Gdx.app.debug(TAG, "Drag delta: " + delta.x + ", " + delta.y);
-		
-		
 		return false;
 	}
 

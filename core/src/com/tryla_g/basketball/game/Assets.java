@@ -18,6 +18,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	private AssetManager assetManager;
 	
 	public AssetBall ball;
+	public AssetHoop hoop;
 	
 	private Assets() {
 	}
@@ -33,6 +34,13 @@ public class Assets implements Disposable, AssetErrorListener {
 		ballTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		ball = new AssetBall(ballTexture);
+		
+		Texture hoopBackgroundTexture = new Texture(Gdx.files.internal(Constants.TEXTURE_HOOP));
+		hoopBackgroundTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		Texture hoopForegroundTexture = new Texture(Gdx.files.internal(Constants.TEXTURE_HOOP_FOREGROUND));
+		hoopForegroundTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		hoop = new AssetHoop(hoopBackgroundTexture, hoopForegroundTexture);
 	}
 
 	@Override
@@ -53,6 +61,16 @@ public class Assets implements Disposable, AssetErrorListener {
 			ball = new TextureRegion(texture, 128, 128);
 		}
 		
+	}
+	
+	public class AssetHoop {
+		
+		public final TextureRegion background, foreground;
+		
+		public AssetHoop(Texture textureBackground, Texture textureForeground) {
+			background = new TextureRegion(textureBackground, 82, 50);
+			foreground = new TextureRegion(textureForeground, 82, 50);
+		}
 	}
 	
 }
