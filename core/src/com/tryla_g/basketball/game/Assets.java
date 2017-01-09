@@ -17,6 +17,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	
 	private AssetManager assetManager;
 	
+	public AssetAudience audience;
 	public AssetBall ball;
 	public AssetHoop hoop;
 	
@@ -29,6 +30,11 @@ public class Assets implements Disposable, AssetErrorListener {
 		Gdx.app.debug(TAG, "# of assets loaded: " + assetManager.getAssetNames().size);
 		for (String a : assetManager.getAssetNames())
 			Gdx.app.debug(TAG, "asset: " + a);
+		
+		Texture audienceTexure = new Texture(Gdx.files.internal(Constants.TEXTURE_AUDIENCE));
+		audienceTexure.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		audience = new AssetAudience(audienceTexure);
 		
 		Texture ballTexture = new Texture(Gdx.files.internal(Constants.TEXTURE_BALL));
 		ballTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -51,6 +57,16 @@ public class Assets implements Disposable, AssetErrorListener {
 	@Override
 	public void dispose() {
 		assetManager.dispose();
+	}
+	
+	public class AssetAudience {
+		
+		public final TextureRegion audience;
+		
+		public AssetAudience(Texture texture) {
+			audience = new TextureRegion(texture, 800, 480);
+		}
+		
 	}
 	
 	public class AssetBall {

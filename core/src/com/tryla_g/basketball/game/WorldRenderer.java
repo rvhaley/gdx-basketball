@@ -27,17 +27,22 @@ public class WorldRenderer implements Disposable {
 	public void render() {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		renderWorld(batch);
+		renderAudience(batch);
+		renderHoopBackground(batch);
 		worldController.gameWorld.render(batch);
-		renderWorldForeground(batch);
+		renderHoopForeground(batch);
 		batch.end();
 	}
 	
-	private void renderWorld(SpriteBatch batch) {
+	private void renderAudience(SpriteBatch batch) {
+		batch.draw(Assets.INSTANCE.audience.audience, -400, -240, 800 / 2, 480 / 2, 800, 480, 1, 1, 0);
+	}
+	
+	private void renderHoopBackground(SpriteBatch batch) {
 		batch.draw(Assets.INSTANCE.hoop.background, 296, 40, 82 / 2, 50 / 2, 82, 50, 1, 1, 0);
 	}
 	
-	private void renderWorldForeground(SpriteBatch batch) {
+	private void renderHoopForeground(SpriteBatch batch) {
 		batch.draw(Assets.INSTANCE.hoop.foreground, 296, 40, 82 / 2, 50 / 2, 82, 50, 1, 1, 0);
 	}
 	

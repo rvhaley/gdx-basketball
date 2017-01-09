@@ -72,7 +72,7 @@ public class WorldController extends InputAdapter {
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (ballTouched) {
 			Gdx.app.debug(TAG, "releasing ball");
-			gameWorld.ball.body.applyForce(new Vector2(delta.x * 20000, delta.y * 20000),
+			gameWorld.ball.body.applyForce(new Vector2(delta.x * 30000, delta.y * 30000),
 					gameWorld.ball.body.getWorldCenter(), true);
 		}
 		return false;
