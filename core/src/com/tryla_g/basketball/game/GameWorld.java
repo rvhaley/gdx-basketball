@@ -44,8 +44,11 @@ public class GameWorld {
 		
 		ball.fixture = ball.body.createFixture(fixtureDef);
 		
-		ball.body.setUserData(new Box2DSprite(ball.regionBall));
-		
+//		ball.body.setUserData(new Box2DSprite(ball.regionBall));
+//        ball.box2DSprite = new Box2DSprite(Assets.INSTANCE.ball.ball.getTexture());
+		ball.body.setUserData(ball);
+		ball.fixture.setUserData(ball);
+
 		circle.dispose();
 		
 		floor = new Floor();

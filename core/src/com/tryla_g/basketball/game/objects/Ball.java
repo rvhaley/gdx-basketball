@@ -14,6 +14,8 @@ public class Ball extends AbstractGameObject {
 
 	public TextureRegion regionBall;
 
+	public Box2DSprite box2DSprite;
+
 	public Ball() {
 		init();
 	}
@@ -21,13 +23,14 @@ public class Ball extends AbstractGameObject {
 	private void init() {
 		dimension.set(1, 1);
 		regionBall = Assets.INSTANCE.ball.ball;
+		box2DSprite = new Box2DSprite(regionBall);
 		origin.set(dimension.x / 2, dimension.y / 2);
 		bounds.set(0, 0, dimension.x, dimension.y);
 	}
 
 	@Override
 	public void render(SpriteBatch batch) {
-		Box2DSprite.draw(batch, PhysicsController.world);
+		box2DSprite.draw(batch, fixture);
 		batch.setColor(1, 1, 1, 1);
 	}
 
