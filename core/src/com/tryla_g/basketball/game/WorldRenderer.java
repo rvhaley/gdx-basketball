@@ -1,5 +1,6 @@
 package com.tryla_g.basketball.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
@@ -10,7 +11,9 @@ public class WorldRenderer implements Disposable {
 	
 	public static OrthographicCamera camera;
 	public static OrthographicCamera backgroundCamera;
+
 	private SpriteBatch batch;
+
 	private WorldController worldController;
 	
 	public WorldRenderer(WorldController worldController) {
@@ -20,11 +23,12 @@ public class WorldRenderer implements Disposable {
 	
 	private void init() {
 		batch = new SpriteBatch();
+
 		camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
 		camera.position.set(0, 0, 0);
-//		camera.setToOrtho(false);
-		camera.update();
-		backgroundCamera = new OrthographicCamera(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
+        camera.update();
+
+		backgroundCamera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		backgroundCamera.position.set(0, 0, 0);
 		backgroundCamera.update();
 	}
@@ -32,8 +36,8 @@ public class WorldRenderer implements Disposable {
 	public void render() {
 		batch.setProjectionMatrix(backgroundCamera.combined);
 		batch.begin();
-		renderAudience(batch);
 
+		renderAudience(batch);
 		renderHoopBackground(batch);
 		
 		batch.end();
@@ -42,8 +46,7 @@ public class WorldRenderer implements Disposable {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 //		renderHoopBackground(batch);
-		
-		
+
 		worldController.gameWorld.render(batch);
 		batch.setProjectionMatrix(backgroundCamera.combined);
 		
@@ -52,7 +55,8 @@ public class WorldRenderer implements Disposable {
 	}
 	
 	private void renderAudience(SpriteBatch batch) {
-		batch.draw(Assets.INSTANCE.audience.audience, 0, 0, 800 / 2, 480 / 2, 800, 480, 1, 1, 0);
+//		batch.draw(Assets.INSTANCE.audience.audience, 0, 0, 800 / 2, 480 / 2, 800, 480, 1, 1, 0);
+	    batch.draw(Assets.INSTANCE.audience.audience, -Gdx.graphics.getWidth() / 2, -Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 	
 	private void renderHoopBackground(SpriteBatch batch) {
@@ -67,8 +71,10 @@ public class WorldRenderer implements Disposable {
 		camera.viewportWidth = (Constants.VIEWPORT_HEIGHT / height) * width;
 		camera.update();
 		//backgroundCamera.viewportHeight = Constants.VIEWPORT_GUI_HEIGHT;
-		backgroundCamera.viewportWidth = ((Constants.VIEWPORT_GUI_HEIGHT / height) * width);
-		backgroundCamera.position.set(backgroundCamera.viewportWidth / 2, backgroundCamera.viewportHeight / 2, 0);
+
+//		backgroundCamera.viewportWidth = ((Constants.VIEWPORT_GUI_HEIGHT / height) * width);
+        backgroundCamera.viewportWidth = ((Gdx.graphics.getHeight() / height) * width);
+        backgroundCamera.position.set(0, 0, 0);
 		backgroundCamera.update();
 	}
 	

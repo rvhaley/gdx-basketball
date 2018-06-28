@@ -43,18 +43,15 @@ public class GameWorld {
 		fixtureDef.restitution = 0.6f;
 		
 		ball.fixture = ball.body.createFixture(fixtureDef);
-		
-//		ball.body.setUserData(new Box2DSprite(ball.regionBall));
-//        ball.box2DSprite = new Box2DSprite(Assets.INSTANCE.ball.ball.getTexture());
+
 		ball.body.setUserData(ball);
 		ball.fixture.setUserData(ball);
 
 		circle.dispose();
 		
 		floor = new Floor();
-		
-		floor.bodyDef.position.set(0, -2.5f);
-//		floor.bodyDef.position.set(0, -110);
+
+		floor.bodyDef.position.set(0, -Constants.VIEWPORT_HEIGHT / 2);
 		floor.body = world.createBody(floor.bodyDef);
 		floor.body.setUserData(floor);
 		
