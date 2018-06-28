@@ -84,8 +84,8 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final TextureRegion background, foreground;
 		
 		public AssetHoop(Texture textureBackground, Texture textureForeground) {
-			background = new TextureRegion(textureBackground, 82, 50);
-			foreground = new TextureRegion(textureForeground, 82, 50);
+			background = new TextureRegion(textureBackground, 108, 66);
+			foreground = new TextureRegion(textureForeground, 108, 66);
 		}
 	}
 	

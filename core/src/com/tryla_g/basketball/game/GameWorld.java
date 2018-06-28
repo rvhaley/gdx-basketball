@@ -26,15 +26,15 @@ public class GameWorld {
 	
 	private void init(World world) {
 		ball = new Ball();
-		ball.dimension.set(40, 40);
-		ball.position.set(100, 300);
+		ball.dimension.set(1, 1);
+		ball.position.set(0, 0);
 		
 		ball.bodyDef.type = BodyType.DynamicBody;
-		ball.bodyDef.position.set(100, 300);
+		ball.bodyDef.position.set(0, 0);
 		ball.body = world.createBody(ball.bodyDef);
 		
 		CircleShape circle = new CircleShape();
-		circle.setRadius(20.0f);
+		circle.setRadius(0.3f);
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = circle;
@@ -50,11 +50,13 @@ public class GameWorld {
 		
 		floor = new Floor();
 		
-		floor.bodyDef.position.set(0, -200);
+		floor.bodyDef.position.set(0, -2.5f);
+//		floor.bodyDef.position.set(0, -110);
 		floor.body = world.createBody(floor.bodyDef);
+		floor.body.setUserData(floor);
 		
 		PolygonShape polygon = new PolygonShape();
-		polygon.setAsBox(Constants.VIEWPORT_WIDTH, 10.0f);
+		polygon.setAsBox(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 20);
 		
 		floor.fixture = floor.body.createFixture(polygon, 0.0f);
 
@@ -62,23 +64,23 @@ public class GameWorld {
 		
 		hoop = new Hoop();
 		hoop.dimension.set(10, 10);
-		hoop.position.set(100, 100); 
+		hoop.position.set(692, 250); 
 		
-		hoop.bodyDef.position.set(310, 75);
+		hoop.bodyDef.position.set(3.22f, 0.56f);
 		hoop.body = world.createBody(hoop.bodyDef);
 		
 		PolygonShape hoopLeftPoly = new PolygonShape();
-		hoopLeftPoly.setAsBox(3.0f, 5.0f);
+		hoopLeftPoly.setAsBox(0.022f, 0.08f);
 		
 		hoop.leftHoop = hoop.body.createFixture(hoopLeftPoly, 0.0f);
 		
 		hoopLeftPoly.dispose();
 		
-		hoop.rightHoopBodyDef.position.set(370, 75);
+		hoop.rightHoopBodyDef.position.set(4.09f, 0.58f);
 		hoop.rightHoopBody = world.createBody(hoop.rightHoopBodyDef);
 		
 		PolygonShape hoopRightPoly = new PolygonShape();
-		hoopRightPoly.setAsBox(3.0f,  5.0f);
+		hoopRightPoly.setAsBox(0.1f,  0.08f);
 		
 		hoop.rightHoop = hoop.rightHoopBody.createFixture(hoopRightPoly, 0.0f);
 		

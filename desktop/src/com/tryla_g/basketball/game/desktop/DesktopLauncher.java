@@ -7,7 +7,7 @@ import com.tryla_g.basketball.game.GdxBasketballMain;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "Gdx-Basketball";
+		config.title = "Basketball";
 		config.width = 800;
 		config.height = 480;
 		new LwjglApplication(new GdxBasketballMain(), config);

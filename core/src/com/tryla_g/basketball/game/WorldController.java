@@ -39,11 +39,12 @@ public class WorldController extends InputAdapter {
 		
 		float ballX = gameWorld.ball.body.getPosition().x;
 		float ballY = gameWorld.ball.body.getPosition().y;
-		
-		if ((vector.x > ballX - 20.f && vector.x < ballX + 20.f)
-				&& (vector.y > ballY - 20.f && vector.y < ballY + 20.f)) {
+	
+		if ((vector.x > ballX - 0.6f && vector.x < ballX + 0.6f)
+				&& (vector.y > ballY - 0.6f && vector.y < ballY + 0.6f)) {
 			Gdx.app.debug(TAG, "Ball touched");
 			ballTouched = true;
+			applyCounterforce();
 		} else {
 			ballTouched = false;
 		}
@@ -52,6 +53,11 @@ public class WorldController extends InputAdapter {
 		return false;
 	}
 
+	private void applyCounterforce() {
+		float counterForce = gameWorld.ball.body.getMass() * -PhysicsController.world.getGravity().y; // * SCALE
+		gameWorld.ball.body.applyForce(new Vector2(0, counterForce), gameWorld.ball.body.getPosition(), true);
+	}
+	
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		Vector3 vector = new Vector3();
@@ -59,6 +65,7 @@ public class WorldController extends InputAdapter {
 		
 		if (ballTouched) {
 			gameWorld.ball.body.setTransform(vector.x,  vector.y, gameWorld.ball.body.getAngle());
+			gameWorld.ball.body.setLinearVelocity(0, 0);
 		}
 		
 		Vector2 newTouch = new Vector2(vector.x, vector.y);
@@ -72,8 +79,10 @@ public class WorldController extends InputAdapter {
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (ballTouched) {
 			Gdx.app.debug(TAG, "releasing ball");
-			gameWorld.ball.body.applyForce(new Vector2(delta.x * 30000, delta.y * 30000),
+			Gdx.app.debug(TAG, "Delta X/Y: " + delta.x + "/" + delta.y);
+			gameWorld.ball.body.applyLinearImpulse(new Vector2(delta.x * 1.5f, delta.y * 1.5f),
 					gameWorld.ball.body.getWorldCenter(), true);
+			ballTouched = false;
 		}
 		return false;
 	}
