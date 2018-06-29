@@ -18,8 +18,9 @@ public class GameWorld {
 	
 	public Ball ball;
 	public Floor floor;
-	public Hoop hoop;
-	
+//	public Hoop hoop;
+
+
 	public GameWorld(World world) {
 		init(world);
 	}
@@ -61,7 +62,8 @@ public class GameWorld {
 		floor.fixture = floor.body.createFixture(polygon, 0.0f);
 
 		polygon.dispose();
-		
+
+		/*
 		hoop = new Hoop();
 		hoop.dimension.set(10, 10);
 		hoop.position.set(692, 250); 
@@ -86,20 +88,21 @@ public class GameWorld {
 		
 		hoop.body.setUserData(hoop);
 		
-		hoopRightPoly.dispose();	
+		hoopRightPoly.dispose();
+		*/
 	}
 	
 	public void update(float deltaTime) {
 		if (ball != null) {
 			ball.update(deltaTime);
-			hoop.update(deltaTime);
+//			hoop.update(deltaTime);
 		}
 	}
 	
 	public void render(SpriteBatch batch) {
 		if (ball != null) {
 			ball.render(batch);
-			hoop.render(batch);
+//			hoop.render(batch);
 		}
 	}
 	

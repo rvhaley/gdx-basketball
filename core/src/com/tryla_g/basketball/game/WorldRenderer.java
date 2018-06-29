@@ -45,34 +45,33 @@ public class WorldRenderer implements Disposable {
 
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-//		renderHoopBackground(batch);
+		
+		renderHoopBackground(batch);
 
 		worldController.gameWorld.render(batch);
+
 		batch.setProjectionMatrix(backgroundCamera.combined);
-		
 		renderHoopForeground(batch);
 		batch.end();
 	}
 	
 	private void renderAudience(SpriteBatch batch) {
-//		batch.draw(Assets.INSTANCE.audience.audience, 0, 0, 800 / 2, 480 / 2, 800, 480, 1, 1, 0);
 	    batch.draw(Assets.INSTANCE.audience.audience, -Gdx.graphics.getWidth() / 2, -Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 	
 	private void renderHoopBackground(SpriteBatch batch) {
-		batch.draw(Assets.INSTANCE.hoop.background, 696, 250, 108 / 2, 66 / 2, 108, 66, 1, 1, 0);
+//		batch.draw(Assets.INSTANCE.hoop.background, 696, 250, 108 / 2, 66 / 2, 108, 66, 1, 1, 0);
+		batch.draw(Assets.INSTANCE.hoop.background, 708, 100, 108 / 2, 66 / 2, 108, 66, 4,4,0 );
 	}
-	
+
 	private void renderHoopForeground(SpriteBatch batch) {
-		batch.draw(Assets.INSTANCE.hoop.foreground, 696, 250, 108 / 2, 66 / 2, 108, 66, 1, 1, 0);
+		batch.draw(Assets.INSTANCE.hoop.foreground, 708, 100, 108 / 2, 66 / 2, 108, 66, 4, 4, 0);
 	}
 	
 	public void resize(int width, int height) {
 		camera.viewportWidth = (Constants.VIEWPORT_HEIGHT / height) * width;
 		camera.update();
-		//backgroundCamera.viewportHeight = Constants.VIEWPORT_GUI_HEIGHT;
 
-//		backgroundCamera.viewportWidth = ((Constants.VIEWPORT_GUI_HEIGHT / height) * width);
         backgroundCamera.viewportWidth = ((Gdx.graphics.getHeight() / height) * width);
         backgroundCamera.position.set(0, 0, 0);
 		backgroundCamera.update();
