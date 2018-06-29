@@ -7,4 +7,7 @@ Simple multi-platform basketball game demo using libGDX framework and Box2D phys
 ## Screenshots
 
 ### Android
-![alt text](https://i.imgur.com/lmG4caY.jpg)
+![alt text](https://i.imgur.com/Dv0ccFF.jpg)
+
+### Desktop
+![alt text](https://i.imgur.com/Vn5gPWs.png)
